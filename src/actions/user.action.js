@@ -10,7 +10,6 @@ export const userAction = {
     createUser,
     getAllUser,
     getUserById,
-    login_van_tai
     // delete: _delete
 };
 
@@ -31,29 +30,6 @@ function login(username, password) {
                 //   history.push('/');
                 // }
 
-            } else {
-                dispatch(failure(response.message.toString()));
-                dispatch(alertAction.error(response.message.toString()));
-            }
-        } catch (error) {
-            dispatch(failure(error.toString()));
-            dispatch(alertAction.error(error.toString()));
-        }
-        function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-        function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-        function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
-    }
-}
-
-function login_van_tai(username, password) {
-    return async dispatch => {
-        dispatch(request({ username }));
-        try {
-            const response = await userService.login(username, password);
-            if (response.success) {
-                dispatch(success(response.data));
-                localStorage.setItem('user', JSON.stringify(response.data));
-                history.push('/');
             } else {
                 dispatch(failure(response.message.toString()));
                 dispatch(alertAction.error(response.message.toString()));

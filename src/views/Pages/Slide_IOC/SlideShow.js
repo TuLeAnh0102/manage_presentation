@@ -31,14 +31,15 @@ function SlideShow(props) {
     }, [])
 
     const loadData = () => {
-        managerContentService.getAllByUserId().then(response => {
-            changeTimeout(response);
-            setCollection(response);
+        managerContentService.getAllByUserId('61e7670a6f2569d64f2b2074').then(response => {
+            // changeTimeout(response);
+            setCollection(response['data']);
+            // console.log(response);
         });
     }
 
     const changeTimeout = (e) => {
-        setTimeout(e.map(({ time_interval }) => time_interval));
+        // setTimeout(e.map(({ time_interval }) => time_interval));
         //console.log(e.target.value);
         // return e.target.value;
     }
